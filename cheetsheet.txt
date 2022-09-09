@@ -1,0 +1,89 @@
+//Mongodb commands for databases
+view all database
+show dbs 
+
+create a new or switch databases
+use dbName
+
+view current database
+db 
+
+Delete a database
+db.dropDatabase()
+
+//Mongodb commands for Collections
+Show Collections
+show collections
+
+Create a collection named 'myComments'
+db.myComments.drop()  
+
+//Mongodb commands for Rows
+Show all rows in a collection
+db.comments.find()
+
+
+Show all Rows in a Collections (Prettified)
+db.comments.find().pretty()
+
+
+
+Find the first row matching the object
+db.comments.findOne({name: 'Harry'})
+
+Insert one Rows
+db.myRows.insert({
+    'name': 'Harry',
+    'lang': 'Javascript',
+    'member_since': 5
+})
+Insert many Rows
+db.comments.insertMany([{
+    'name': 'Harry',
+    'lang': 'Java',
+    'member_since': 5
+    },
+    {'name': 'HarryRaju',
+    'lang': 'Javascript',
+    'member_since': 8
+},{ 
+    'name': 'Adil',
+    'lang': 'python',
+    'member_since': 4
+}])
+
+
+Search In a MongoDb database
+db.comments.find({lang:'python'})
+
+Limit the number of rows in output
+db.comments.find().limit(2)
+
+Count the number of rows in output
+db.comments.find().count()
+
+Update a row 
+db.comments.update({name: 'HarryShubham'},{
+    'name': 'Adil',
+    'lang': 'python',
+    'member_since': 51
+},{upsert: true})
+
+
+Mongodb Increment Operator
+db.comments.update({name: 'Rohan'},
+{$inc:{
+    member_since: 2
+}})
+Mongodb Rename Operator
+db.comments.update({name: 'Rohan'},
+{$rename:{
+    member_since: 'member'
+}})
+
+
+Delete Row
+db.comments.remove({name: 'Harry'})
+
+Less than/Greater than/Less than or equal to
+db.comments.find({member_since: {$lt:5}})
